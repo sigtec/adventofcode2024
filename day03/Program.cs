@@ -18,4 +18,4 @@ foreach(Match match in part2Regex.Matches(input))
     else if (match.Value.StartsWith("mul") && enabled)
         part2Result += Int32.Parse(match.Groups[1].Value) * Int32.Parse(match.Groups[2].Value);
 }
-Console.WriteLine($"part2: part1Result={part2Result}");
+Console.WriteLine($"part2: part2Result={part2Result}");
