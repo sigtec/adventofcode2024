@@ -1,6 +1,4 @@
-﻿using System.Xml.XPath;
-
-var input = File.ReadAllLines("../../../input.txt")
+﻿var input = File.ReadAllLines("../../../input.txt")
   .Select( line => line.Split(':') )
   .Select( tokens => (expectedResult: long.Parse(tokens[0]), operands: tokens[1]
     .Trim()
@@ -16,7 +14,7 @@ bool TestIfEquationCanBeTrue((long expectedResult, long[] operands) equation)
 {
   // hack: adding the first operand to zero does not change the start value,
   // but is a fine entry point into recursion
-  foreach(var actualResult in ApplyOperation(0, equation.operands, 0, Operator.Add))
+  foreach(var actualResult in ApplyOperation(0L, equation.operands, 0, Operator.Add))
   {
     if(equation.expectedResult == actualResult)
       return true;
@@ -37,7 +35,7 @@ IEnumerable<long> ApplyOperation(long actual, long[] operands, int i, Operator o
       break;
     // comment this out to solve part 1
     case Operator.Concatenation:
-      // dirty hack: concartenate as strings
+      // dirty hack: concatenate as strings
       result = long.Parse($"{actual}{operands[i]}");
       break;
   }
