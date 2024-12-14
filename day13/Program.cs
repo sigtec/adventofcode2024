@@ -4,12 +4,9 @@ var regex = new Regex(@"Button A: X\+(\d+), Y\+(\d+)\s+Button B: X\+(\d+), Y\+(\
 var input = File.ReadAllText("../../../input.txt");
 
 // part 1
-long tokens = 0;
-var i = 0;
+long tokens = 0L;
 foreach (var match in regex.Matches(input).OfType<Match>())
 {
-  ++i;
-
   var ax = long.Parse(match.Groups[1].Value);
   var ay = long.Parse(match.Groups[2].Value);
   var bx = long.Parse(match.Groups[3].Value);
@@ -22,12 +19,9 @@ foreach (var match in regex.Matches(input).OfType<Match>())
 Console.WriteLine($"part 1: fewest tokens to spend to win all possible prizes: {tokens}");
 
 // part 2
-tokens = 0;
-i = 0;
+tokens = 0L;
 foreach (var match in regex.Matches(input).OfType<Match>())
 {
-  ++i;
-
   var ax = long.Parse(match.Groups[1].Value);
   var ay = long.Parse(match.Groups[2].Value);
   var bx = long.Parse(match.Groups[3].Value);
@@ -47,7 +41,7 @@ long? Solve(long ax, long ay, long bx, long by, long px, long py)
   // a * ax + b * bx == px
   // a * ay + b * by == py
 
-  // divisor determinate
+  // divisor determinant
   var d = ax * by - bx * ay;
 
   if (d == 0L)
@@ -57,7 +51,7 @@ long? Solve(long ax, long ay, long bx, long by, long px, long py)
     throw new("multiple solutions are valid. Best solution needs to be found using GcdExt(). To be implemented if needed.");
   }
 
-  // divident determinate for a
+  // divident determinant for a
   var da = px * by - bx * py;
   if (da % d != 0)
   {
@@ -72,7 +66,7 @@ long? Solve(long ax, long ay, long bx, long by, long px, long py)
     return null;
   }
 
-  // divident determinate for b
+  // divident determinant for b
   var db = ax * py - px * ay;
   if (db % d != 0)
   {
